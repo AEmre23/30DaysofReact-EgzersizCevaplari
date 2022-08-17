@@ -1,3 +1,6 @@
+// Exercises Level 2-1
+// In the following design, evens are green, odds are yellow and prime numbers are red. Build the following colors using React component
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -54,6 +57,65 @@ const Main = () => {
 }
 const App = () => (
   <Main />
+)
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)
+
+// Exercises Level 2-2
+// Create the following hexadecimal colors using React component
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+const Header = () => (
+    <header style={{marginTop:'20px', fontFamily:'Courier New'}}>
+      <div style={{fontSize:'42px', fontWeight:'900',  marginBottom:'20px', textAlign:'center'}}>
+        30 Days of React
+      </div>
+      <div style={{fontSize:'23px', fontWeight:'600',  marginBottom:'5px', textAlign:'center'}}>
+        Hexadecimal Color Generator
+      </div>
+      <div style={{fontSize:'13px', fontWeight:'500',  marginBottom:'20px', textAlign:'center'}}>
+        by Emre ALTUNKAYA
+      </div>
+      </header>
+  )
+
+const Main = () => {
+  let dizi =[];
+  const hexaColor = () => {
+    let str = '0123456789abcdef'
+    let color = ''
+    for (let i = 0; i < 6; i++) {
+      let index = Math.floor(Math.random() * str.length)
+      color += str[index]
+    }
+    return '#' + color }
+
+    let inputValue=prompt('Sayı giriniz')
+    for (let a=0;a<inputValue;a++) dizi.push(hexaColor())
+    
+  const Output = dizi.map((nmb) => {
+    return <div key={nmb} style={{ fontWeight:'600',color:'white',padding:'calc(98% / 17) 0', width:'calc(98% / 8)',backgroundColor:nmb, fontSize:'16px',marginBottom:'calc(2% / 8)', borderRadius:'5px' }}>{nmb}</div>
+  })
+
+  return(
+    <>
+    <main style={{ width:'80%', padding:'30px 10%'}}>
+      <div style={{ display:'flex',flexWrap:'wrap',gap:'calc(2% / 8)', width:'100%', textAlign:'center'}}>
+        {Output}
+      </div>
+    </main>
+    </>
+    )
+}
+
+const App = () => (
+  <>
+  <Header />
+  <Main />
+  </>
 )
 
 const rootElement = document.getElementById('root')
