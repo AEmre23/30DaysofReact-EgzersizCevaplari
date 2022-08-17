@@ -103,6 +103,7 @@ const Main = () => {
   return(
     <>
     <main style={{ width:'80%', padding:'30px 10%'}}>
+      <div style={{fontSize:'13px', fontWeight:'500',  marginBottom:'10px'}}>{inputValue} adet HEX color</div>
       <div style={{ display:'flex',flexWrap:'wrap',gap:'calc(2% / 8)', width:'100%', textAlign:'center'}}>
         {Output}
       </div>
