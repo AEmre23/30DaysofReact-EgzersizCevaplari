@@ -121,3 +121,98 @@ const App = () => (
 
 const rootElement = document.getElementById('root')
 ReactDOM.render(<App />, rootElement)
+
+// Exercises Level 3
+// Make the following bar group using the given data
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+const Header = () => (
+    <header style={{marginTop:'20px', fontFamily:'Arial'}}>
+      <div style={{fontSize:'42px', fontWeight:'800',  marginBottom:'20px', textAlign:'center'}}>
+        30 Days of React
+      </div>
+      <div style={{fontSize:'33px', fontWeight:'600',  marginBottom:'10px', textAlign:'center'}}>
+        World Population
+      </div>
+      <div style={{fontSize:'13px', fontWeight:'500',  marginBottom:'10px', textAlign:'center'}}>
+        Ten most populated countries
+      </div>
+      <div style={{fontSize:'11px', fontWeight:'500',  marginBottom:'20px', textAlign:'center'}}>
+        by Emre ALTUNKAYA
+      </div>
+      </header>
+  )
+
+  const tenHighestPopulation = [
+    { country: 'World', population: 7693165599 },
+    { country: 'China', population: 1377422166 },
+    { country: 'India', population: 1295210000 },
+    { country: 'USA', population: 323947000 },
+    { country: 'Indonesia', population: 258705000 },
+    { country: 'Brazil', population: 206135893 },
+    { country: 'Pakistan', population: 194125062 },
+    { country: 'Nigeria', population: 186988000 },
+    { country: 'Bangladesh', population: 161006790 },
+    { country: 'Russian Federation', population: 146599183 },
+    { country: 'Japan', population: 126960000 },
+  ]
+
+  const biggestWidth = Number(String(tenHighestPopulation[0].population).slice(0, 3))
+
+  const rowStyle={display:'flex', alignItems:'center',textAlign:'left', fontFamily:'Arial', padding:'5px 0',fontSize:'20px',fontWeight:'500'}
+  
+  function commify(n) {
+    var parts = n.toString().split(".");
+    const numberPart = parts[0];
+    const decimalPart = parts[1];
+    const thousands = /\B(?=(\d{3})+(?!\d))/g;
+    return numberPart.replace(thousands, ",") + (decimalPart ? "." + decimalPart : "");
+    } 
+  let first2Str, first2Num
+  const Populations = ({ population: { country,population } }) => {
+      let slicedPop = population
+      if (population > 1000000000) {
+        first2Str = String(slicedPop).slice(0, 3)
+        first2Num = Number(first2Str)
+      }else {
+        first2Str = String(slicedPop).slice(0, 2)
+        first2Num = Number(first2Str)
+      }
+    return (
+      <div style={rowStyle}>
+        <div style={{textAlign:'left',minWidth:'225px',marginRight:'5px'}}>
+          {country.toUpperCase()}
+        </div>
+        <div style={{minWidth:biggestWidth, marginRight:'10px'}}>
+            <div style={{padding:'15px 0', width:first2Num, backgroundColor:'orange', borderRadius:'2px'}}>
+            </div>
+        </div>
+        <div>
+          {commify(population)}
+        </div>
+      </div>
+    )
+  }
+
+  const TenHighest = ({ulke}) => {
+    const countryList = ulke.map((ulkeler)=> <Populations population={ulkeler} />)
+    return <div>{countryList}</div>
+    }
+
+const Main = () => (
+  <main style={{width:'100%', display:'flex', justifyContent:'center'}}>
+  <TenHighest ulke={tenHighestPopulation} /> 
+  </main>
+)
+
+const App = () => (
+  <>
+  <Header />
+  <Main />
+  </>
+)
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)
