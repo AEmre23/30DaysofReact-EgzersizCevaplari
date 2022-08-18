@@ -140,7 +140,7 @@ const Header = () => (
         Ten most populated countries
       </div>
       <div style={{fontSize:'11px', fontWeight:'500',  marginBottom:'20px', textAlign:'center'}}>
-        by Emre ALTUNKAYA
+        by Emre ALTUNKAYAa
       </div>
       </header>
   )
