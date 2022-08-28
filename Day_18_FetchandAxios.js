@@ -1,7 +1,7 @@
 // Exercise Level 2
 // Find the average metric weight and life span of cats in the following API(https://api.thecatapi.com/v1/breeds).
-// There are 67 breeds of cats in the API.
 // I also use react route in this exercise!
+
 import React, { Component } from 'react'
 import axios from 'axios'
 import {
@@ -14,12 +14,13 @@ import {
 
 const CatData = ({allCats}) =>{
 
-  let loop = allCats.map((cat,index) => {
-
+  let catInfo = allCats.map((cat,index) => {
+  // This is for the 1st,2nd,3rd,4rd...
   let tag = 'rd'
   if (index+1 == 1) tag = 'st'
   else if (index+1 == 2) tag= 'nd'
   else tag='rd'
+  // Getting every cat data to 'catInfo' with map function
   return <p>{index+1}{tag} cat's name is {cat.name}. Its life span is between {cat.life_span} years and weight is betweeen {cat.weight.metric} kg. </p>
   })
 
@@ -27,7 +28,7 @@ const CatData = ({allCats}) =>{
   <>
   <h2>There are {allCats.length} cat breeds in this data. Here is every one of them:</h2>
   <p> You can go <NavLink to='/'>Home</NavLink> from here.</p>
-  {loop}
+  {catInfo}
   </>
 )}
 
@@ -100,9 +101,9 @@ class App extends Component {
     data: [],
   }
   componentDidMount() {
-    this.fetchCountryData()
+    this.fetchCatData()
   }
-  fetchCountryData = async () => {
+  fetchCatData = async () => {
     const url = 'https://api.thecatapi.com/v1/breeds'
     try {
       const response = await axios.get(url)
@@ -119,17 +120,6 @@ class App extends Component {
     let catData = this.state.data
     let numberOfCatBreeds = this.state.data.length
     return (
-      // <div className='App'>
-      //   <h1>React Component Life Cycle</h1>
-      //   <h1>Calling API</h1>
-      //   <div>
-      //     <p>There are {numberOfCatBreeds} cat breed in the api</p>
-      //     <div className='countries-wrapper'>
-      //         <
-      //         
-      //     </div>
-      //   </div>
-      // </div>
       <Router>
       <div className='App'>
         <Switch>
